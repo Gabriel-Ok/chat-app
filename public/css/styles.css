@@ -1,0 +1,113 @@
+
+body
+{
+   background-color: black;
+   overflow: hidden;
+   color: black;
+   width: 100vw;
+}
+.jumbotron
+{
+   width: 70%;
+   position: fixed;
+   left: 15%;
+   height: 70%;
+   overflow: hidden;
+   display: none;
+}
+
+#chatbox
+{
+   height: 70%;
+
+
+   overflow-y: scroll;
+   overflow-x: auto;
+
+
+   width: 80%;
+}
+.userhead2
+{
+   width: 70%;
+   /*font-size: 1.8em;*/
+   color: green;
+}
+@media screen and (max-width:767px) {
+   body{
+      font-size: 0.9em;
+   }
+
+}
+.userhead
+{
+
+   color: green;
+
+}
+.meme
+{
+   background-color: black;
+   border-radius: 1%;
+   color: green;
+   width: 50%;
+   overflow: hidden;
+   word-wrap: break-word;
+
+
+}
+strong
+{
+   color: red;
+}
+
+#user
+{
+   color: white;
+   z-index: 2000;
+   height: 300px;
+}
+#userform
+{
+
+   background-color: black;
+   top: 10%;
+   display: block;
+   margin: auto;
+
+   text-align: center;
+
+
+}
+
+#userwrap
+{
+   /*width: 120vw;*/
+   /*background-color: grey;*/
+   height: 30vh;
+   /*float: left;*/
+   overflow: auto;
+
+   text-align: center;
+
+   background-color: black;
+   top: 70vh;
+   margin: auto;
+
+
+}
+#text
+{
+   width: 70%;
+   margin-right: 5%;
+}
+#user
+{
+
+   color: white;
+   font-weight: bold;
+   /*position: fixed;*/
+   /*float: left;*/
+   text-align: center;
+
+}

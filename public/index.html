@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+
+      <link rel="stylesheet" href="\css\bootstrap.min.css">
+      <link rel="stylesheet" href="\css\styles.css">
+
+
+      <script src="\js\jquery.js"></script>
+      <title></title>
+   </head>
+   <body >
+
+
+
+
+      <div class="container" >
+         <!-- <div class="col-sm-4" > -->
+
+         <!-- </div> -->
+         <form id="userform" class="jumbotron" action="index.html" method="post">
+            <h4 class="userhead">Enter username to continue</h4>
+            <input type="text" name="" value="" id="usernames" placeholder="enter username">
+            <input type="submit" name="" value="submit">
+
+         </form>
+         <!-- <div class="col-sm-4" >
+
+         </div> -->
+
+         <div class="jumbotron" id="jbtr">
+            <h3 class="userhead" id="h3">Chatterbox</h3>
+
+
+
+
+         <div id="chatbox">
+            <div class="meme">
+
+            </div>
+
+         </div>
+         <br>
+
+         <form id="form" action="index.html" method="post">
+
+            <input type="text" name="" value="" placeholder="Say Something..." id="text">
+            <input type="submit" name="" value="send">
+
+         </form>
+
+
+
+         </div>
+         <div class="col-sm-4">
+
+         </div>
+         <div class="col-sm-4" id="userwrap">
+            <p class="userhead2">users online</p>
+            <div id="user">
+
+            </div>
+
+
+
+
+      </div>
+      <div class="col-sm-4">
+
+      </div>
+      </div>
+
+
+
+
+
+      <script src="\socket.io\socket.io.js"></script>
+
+
+      <script src="\js\bootstrap.min.js"></script>
+      <script>
+      // $(document).ready(function () {
+      //    var hour = new Date().getHours();
+      //    if (hour < 19) {
+      //      alert(" goodmorning");
+      //
+      //   }
+      //
+      // });
+
+      </script>
+
+      <script>
+
+      $(document).ready(function () {
+
+         var socket = io.connect();
+
+         var chatbox = $('#chatbox');
+         var form = $('#form');
+         var text = $('#text');
+         var userForm = $('#userform');
+         var users = $('#user');
+         var username = $('#usernames');
+         var jbtr = $('#jbtr');
+
+
+
+
+
+
+         userForm.submit(function (event) {
+
+            event.preventDefault();
+             socket.emit('new user', username.val(), function (data) {
+
+            if (data) {
+               userForm.hide();
+
+                   jbtr.show();
+
+            } else {
+               alert("username taken");
+            }
+
+             });
+         });
+
+
+
+         // var show = new Date().getHours();
+         //  var shown = show.getMinutes();
+         //
+         //  document.write(shown);
+
+
+
+
+
+
+
+
+
+         // var color = '#'+(0x1000000+(Math.random())*xffffff).toString(16).substr(1,6);
+
+
+         form.submit(function (event) {
+
+            event.preventDefault();
+
+            socket.emit('send message', text.val());
+            text.val('');
+
+         });
+
+         socket.on('new message', function (data) {
+
+            chatbox.append( '<strong>'+data.user +'</strong>'+ '<div class="meme">'+  data.msg + '</div>' + '<br>');
+
+         });
+
+
+
+         // userForm.submit(function (event) {
+         //
+         //    event.preventDefault();
+         //
+         //    socket.emit('new user', username.val());
+         //    username.val('');
+         //
+         // });
+
+         socket.on('usernames', function (data) {
+
+            var html = '';
+            for (var i = 0; i < data.length; i++) {
+               html +=  data[i]+'<br>';
+            }
+
+            users.html(html);
+
+            // user.append('<div id="user">'+ data+'</div>');
+
+
+         });
+
+         // socket.on('new user', function (data) {
+         //
+         //    user.append(   data + '<br>');
+         //
+         // });
+
+
+
+
+
+
+
+
+
+      });
+
+      </script>
+      <script>
+
+
+      </script>
+   </body>
+</html>
